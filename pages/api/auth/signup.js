@@ -15,7 +15,7 @@ async function handler(req, res) {
     !password ||
     password.trim().length < 7
   ) {
-    res.status(422).json({
+    return res.status(422).json({
       message: "Invalid input - Check your fields again ",
     });
   }
@@ -24,7 +24,7 @@ async function handler(req, res) {
 
   const db = client.db();
 
-  const hashedPassword = hashPassword(password);
+  const hashedPassword = await hashPassword(password);
 
   const result = db.collection("users").insertOne({
     email: email,
