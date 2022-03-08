@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 function AuthPage() {
   const router = useRouter();
 
-  console.log("auth page called");
   const { data: session, state } = useSession();
 
   if (state === "loading") {
